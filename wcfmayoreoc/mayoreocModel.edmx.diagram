@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d7f773141644467a7b88532dd0165cc" Name="Diagram1">
+        <EntityTypeShape EntityType="mayoreocModel.carritos" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.catalogos" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.categorias" Width="1.5" PointX="6" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.clientes" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.cuentasbancarias" Width="1.5" PointX="9" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.envios" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.metodospago" Width="1.5" PointX="9" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.ordencompra" Width="1.5" PointX="5.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.pagos" Width="1.5" PointX="11.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.productos" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.subcategorias" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayoreocModel.usuarios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="mayoreocModel.fk_carritos_clientes1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_carritos_productos1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_categorias_catalogos1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_productos_catalogos1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_productos_categorias1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_subcategorias_categorias" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_ordenCompra_clientes1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_pagos_clientes1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_pagos_cuentasbancarias1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_envios_ordenCompra1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_pagos_metodospago1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_ordenCompra_productos1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_pagos_ordencompra1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_productos_ordenCompra1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayoreocModel.fk_productos_subcategorias1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="mayoreocModel.cortecaja" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="mayoreocModel.fk_ordencompra_cuentasbancarias1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

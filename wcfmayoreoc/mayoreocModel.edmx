@@ -1,0 +1,1111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mayoreocModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="carritos">
+          <Key>
+            <PropertyRef Name="idcarritos" />
+          </Key>
+          <Property Name="idcarritos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaCreacion" Type="datetime" Precision="0" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="caducidad" Type="datetime" Precision="0" />
+          <Property Name="clientes_idcliente" Type="int" Nullable="false" />
+          <Property Name="productos_idproducto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catalogos">
+          <Key>
+            <PropertyRef Name="idcatalogo" />
+          </Key>
+          <Property Name="idcatalogo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCatalogo" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="idcategoria" />
+          </Key>
+          <Property Name="idcategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCategoria" Type="varchar" MaxLength="45" />
+          <Property Name="catalogos_idcatalogo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="idcliente" />
+          </Key>
+          <Property Name="idcliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" />
+          <Property Name="apellidos" Type="varchar" MaxLength="120" />
+          <Property Name="correo" Type="varchar" MaxLength="45" />
+          <Property Name="telefono1" Type="varchar" MaxLength="45" />
+          <Property Name="telefono2" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="10" />
+          <Property Name="calle" Type="varchar" MaxLength="45" />
+          <Property Name="numExterior" Type="varchar" MaxLength="10" />
+          <Property Name="numInterior" Type="varchar" MaxLength="10" />
+          <Property Name="colonia" Type="varchar" MaxLength="45" />
+          <Property Name="codigoPostal" Type="int" />
+          <Property Name="municipio" Type="varchar" MaxLength="45" />
+          <Property Name="estado" Type="varchar" MaxLength="45" />
+          <Property Name="fechaAlta" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="cortecaja">
+          <Key>
+            <PropertyRef Name="idcortecaja" />
+          </Key>
+          <Property Name="idcortecaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Precision="0" />
+          <Property Name="encargado" Type="varchar" MaxLength="45" />
+          <Property Name="fondoInicial" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="ingresoTotal" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="efectivoCaja" Type="decimal" Precision="18" Scale="8" />
+        </EntityType>
+        <EntityType Name="cuentasbancarias">
+          <Key>
+            <PropertyRef Name="idcuentaBancaria" />
+          </Key>
+          <Property Name="idcuentaBancaria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroCuenta" Type="int" />
+          <Property Name="sucursal" Type="varchar" MaxLength="45" />
+          <Property Name="titular" Type="varchar" MaxLength="45" />
+          <Property Name="clabe" Type="int" />
+          <Property Name="banco" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="envios">
+          <Key>
+            <PropertyRef Name="idenvio" />
+          </Key>
+          <Property Name="idenvio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paqueteria" Type="varchar" MaxLength="45" />
+          <Property Name="costo" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="fechaEnvio" Type="datetime" Precision="0" />
+          <Property Name="fechaLlegada" Type="datetime" Precision="0" />
+          <Property Name="referenciaDomicilio" Type="varchar" MaxLength="45" />
+          <Property Name="domicilioEntrega" Type="varchar" MaxLength="45" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="numeroGuia" Type="varchar" MaxLength="45" />
+          <Property Name="ordenCompra_idordenCompra" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="metodospago">
+          <Key>
+            <PropertyRef Name="idmetodoPago" />
+          </Key>
+          <Property Name="idmetodoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="metodo" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="ordencompra">
+          <Key>
+            <PropertyRef Name="idordenCompra" />
+          </Key>
+          <Property Name="idordenCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="domicilioEntrega" Type="varchar" MaxLength="200" />
+          <Property Name="fecha" Type="datetime" Precision="0" />
+          <Property Name="cantidad" Type="varchar" MaxLength="45" />
+          <Property Name="total" Type="varchar" MaxLength="45" />
+          <Property Name="pesototal" Type="varchar" MaxLength="45" />
+          <Property Name="pagado" Type="varchar" MaxLength="45" />
+          <Property Name="paqueteria" Type="varchar" MaxLength="45" />
+          <Property Name="clientes_idcliente" Type="int" Nullable="false" />
+          <Property Name="productos_idproducto" Type="int" Nullable="false" />
+          <Property Name="cuentasbancarias_idcuentaBancaria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pagos">
+          <Key>
+            <PropertyRef Name="idpagos" />
+          </Key>
+          <Property Name="idpagos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="concepto" Type="varchar" MaxLength="45" />
+          <Property Name="monto" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="notas" Type="varchar" MaxLength="245" />
+          <Property Name="clientes_idcliente" Type="int" Nullable="false" />
+          <Property Name="ordencompra_idordenCompra" Type="int" Nullable="false" />
+          <Property Name="cuentasbancarias_idcuentaBancaria" Type="int" Nullable="false" />
+          <Property Name="metodospago_idmetodoPago" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="idproducto" />
+          </Key>
+          <Property Name="idproducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoInterno" Type="varchar" MaxLength="45" />
+          <Property Name="codigoProveedor" Type="varchar" MaxLength="45" />
+          <Property Name="peso" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="140" />
+          <Property Name="existencia" Type="int" />
+          <Property Name="productoscol" Type="varchar" MaxLength="45" />
+          <Property Name="imagen1" Type="varchar" MaxLength="100" />
+          <Property Name="imagen2" Type="varchar" MaxLength="100" />
+          <Property Name="imagen3" Type="varchar" MaxLength="100" />
+          <Property Name="imagen4" Type="varchar" MaxLength="100" />
+          <Property Name="nuevo" Type="bit" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="categoriaPrecio" Type="varchar" MaxLength="2" />
+          <Property Name="agotado" Type="bit" />
+          <Property Name="catalogos_idcatalogo" Type="int" Nullable="false" />
+          <Property Name="categorias_idcategoria" Type="int" Nullable="false" />
+          <Property Name="subcategorias_idsubcategorias" Type="int" Nullable="false" />
+          <Property Name="ordenCompra_idordenCompra" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="subcategorias">
+          <Key>
+            <PropertyRef Name="idsubcategorias" />
+          </Key>
+          <Property Name="idsubcategorias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreSubcategoria" Type="varchar" MaxLength="45" />
+          <Property Name="categorias_idcategoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="idusuarios" />
+          </Key>
+          <Property Name="idusuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="45" />
+          <Property Name="perfil" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk_carritos_clientes1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="carritos" Type="Self.carritos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="carritos">
+              <PropertyRef Name="clientes_idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carritos_productos1">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="carritos" Type="Self.carritos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="idproducto" />
+            </Principal>
+            <Dependent Role="carritos">
+              <PropertyRef Name="productos_idproducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_categorias_catalogos1">
+          <End Role="catalogos" Type="Self.catalogos" Multiplicity="1" />
+          <End Role="categorias" Type="Self.categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="idcatalogo" />
+            </Principal>
+            <Dependent Role="categorias">
+              <PropertyRef Name="catalogos_idcatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_envios_ordenCompra1">
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="1" />
+          <End Role="envios" Type="Self.envios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordencompra">
+              <PropertyRef Name="idordenCompra" />
+            </Principal>
+            <Dependent Role="envios">
+              <PropertyRef Name="ordenCompra_idordenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordenCompra_clientes1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="ordencompra">
+              <PropertyRef Name="clientes_idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordencompra_cuentasbancarias1">
+          <End Role="cuentasbancarias" Type="Self.cuentasbancarias" Multiplicity="1" />
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuentasbancarias">
+              <PropertyRef Name="idcuentaBancaria" />
+            </Principal>
+            <Dependent Role="ordencompra">
+              <PropertyRef Name="cuentasbancarias_idcuentaBancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordenCompra_productos1">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="idproducto" />
+            </Principal>
+            <Dependent Role="ordencompra">
+              <PropertyRef Name="productos_idproducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_clientes1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="clientes_idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_cuentasbancarias1">
+          <End Role="cuentasbancarias" Type="Self.cuentasbancarias" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuentasbancarias">
+              <PropertyRef Name="idcuentaBancaria" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="cuentasbancarias_idcuentaBancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_metodospago1">
+          <End Role="metodospago" Type="Self.metodospago" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="metodospago">
+              <PropertyRef Name="idmetodoPago" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="metodospago_idmetodoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_ordencompra1">
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordencompra">
+              <PropertyRef Name="idordenCompra" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="ordencompra_idordenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productos_catalogos1">
+          <End Role="catalogos" Type="Self.catalogos" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="idcatalogo" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="catalogos_idcatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productos_categorias1">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="idcategoria" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="categorias_idcategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productos_ordenCompra1">
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordencompra">
+              <PropertyRef Name="idordenCompra" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="ordenCompra_idordenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productos_subcategorias1">
+          <End Role="subcategorias" Type="Self.subcategorias" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subcategorias">
+              <PropertyRef Name="idsubcategorias" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="subcategorias_idsubcategorias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_subcategorias_categorias">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="subcategorias" Type="Self.subcategorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="idcategoria" />
+            </Principal>
+            <Dependent Role="subcategorias">
+              <PropertyRef Name="categorias_idcategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mayoreocModelStoreContainer">
+          <EntitySet Name="carritos" EntityType="Self.carritos" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="catalogos" EntityType="Self.catalogos" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="categorias" EntityType="Self.categorias" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="cortecaja" EntityType="Self.cortecaja" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="cuentasbancarias" EntityType="Self.cuentasbancarias" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="envios" EntityType="Self.envios" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="metodospago" EntityType="Self.metodospago" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="ordencompra" EntityType="Self.ordencompra" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="pagos" EntityType="Self.pagos" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="subcategorias" EntityType="Self.subcategorias" Schema="mayoreoc" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="mayoreoc" store:Type="Tables" />
+          <AssociationSet Name="fk_carritos_clientes1" Association="Self.fk_carritos_clientes1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="carritos" EntitySet="carritos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carritos_productos1" Association="Self.fk_carritos_productos1">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="carritos" EntitySet="carritos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_categorias_catalogos1" Association="Self.fk_categorias_catalogos1">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="categorias" EntitySet="categorias" />
+          </AssociationSet>
+          <AssociationSet Name="fk_envios_ordenCompra1" Association="Self.fk_envios_ordenCompra1">
+            <End Role="ordencompra" EntitySet="ordencompra" />
+            <End Role="envios" EntitySet="envios" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordenCompra_clientes1" Association="Self.fk_ordenCompra_clientes1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="ordencompra" EntitySet="ordencompra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordencompra_cuentasbancarias1" Association="Self.fk_ordencompra_cuentasbancarias1">
+            <End Role="cuentasbancarias" EntitySet="cuentasbancarias" />
+            <End Role="ordencompra" EntitySet="ordencompra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordenCompra_productos1" Association="Self.fk_ordenCompra_productos1">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="ordencompra" EntitySet="ordencompra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_clientes1" Association="Self.fk_pagos_clientes1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_cuentasbancarias1" Association="Self.fk_pagos_cuentasbancarias1">
+            <End Role="cuentasbancarias" EntitySet="cuentasbancarias" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_metodospago1" Association="Self.fk_pagos_metodospago1">
+            <End Role="metodospago" EntitySet="metodospago" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_ordencompra1" Association="Self.fk_pagos_ordencompra1">
+            <End Role="ordencompra" EntitySet="ordencompra" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productos_catalogos1" Association="Self.fk_productos_catalogos1">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productos_categorias1" Association="Self.fk_productos_categorias1">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productos_ordenCompra1" Association="Self.fk_productos_ordenCompra1">
+            <End Role="ordencompra" EntitySet="ordencompra" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productos_subcategorias1" Association="Self.fk_productos_subcategorias1">
+            <End Role="subcategorias" EntitySet="subcategorias" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_subcategorias_categorias" Association="Self.fk_subcategorias_categorias">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="subcategorias" EntitySet="subcategorias" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mayoreocModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="carritos">
+          <Key>
+            <PropertyRef Name="idcarritos" />
+          </Key>
+          <Property Name="idcarritos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaCreacion" Type="DateTime" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="total" Type="Decimal" />
+          <Property Name="caducidad" Type="DateTime" />
+          <Property Name="clientes_idcliente" Type="Int32" Nullable="false" />
+          <Property Name="productos_idproducto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clientes" Relationship="Self.fk_carritos_clientes1" FromRole="carritos" ToRole="clientes" />
+          <NavigationProperty Name="productos" Relationship="Self.fk_carritos_productos1" FromRole="carritos" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="catalogos">
+          <Key>
+            <PropertyRef Name="idcatalogo" />
+          </Key>
+          <Property Name="idcatalogo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCatalogo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.fk_categorias_catalogos1" FromRole="catalogos" ToRole="categorias" />
+          <NavigationProperty Name="productos" Relationship="Self.fk_productos_catalogos1" FromRole="catalogos" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="idcategoria" />
+          </Key>
+          <Property Name="idcategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCategoria" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="catalogos_idcatalogo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catalogos" Relationship="Self.fk_categorias_catalogos1" FromRole="categorias" ToRole="catalogos" />
+          <NavigationProperty Name="productos" Relationship="Self.fk_productos_categorias1" FromRole="categorias" ToRole="productos" />
+          <NavigationProperty Name="subcategorias" Relationship="Self.fk_subcategorias_categorias" FromRole="categorias" ToRole="subcategorias" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="idcliente" />
+          </Key>
+          <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="telefono1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="telefono2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="numExterior" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="numInterior" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="colonia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPostal" Type="Int32" />
+          <Property Name="municipio" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fechaAlta" Type="DateTime" />
+          <NavigationProperty Name="carritos" Relationship="Self.fk_carritos_clientes1" FromRole="clientes" ToRole="carritos" />
+          <NavigationProperty Name="ordencompra" Relationship="Self.fk_ordenCompra_clientes1" FromRole="clientes" ToRole="ordencompra" />
+          <NavigationProperty Name="pagos" Relationship="Self.fk_pagos_clientes1" FromRole="clientes" ToRole="pagos" />
+        </EntityType>
+        <EntityType Name="cuentasbancarias">
+          <Key>
+            <PropertyRef Name="idcuentaBancaria" />
+          </Key>
+          <Property Name="idcuentaBancaria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroCuenta" Type="Int32" />
+          <Property Name="sucursal" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="titular" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="clabe" Type="Int32" />
+          <Property Name="banco" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pagos" Relationship="Self.fk_pagos_cuentasbancarias1" FromRole="cuentasbancarias" ToRole="pagos" />
+          <NavigationProperty Name="ordencompra" Relationship="mayoreocModel.fk_ordencompra_cuentasbancarias1" FromRole="cuentasbancarias" ToRole="ordencompra" />
+        </EntityType>
+        <EntityType Name="envios">
+          <Key>
+            <PropertyRef Name="idenvio" />
+          </Key>
+          <Property Name="idenvio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paqueteria" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="costo" Type="Decimal" />
+          <Property Name="fechaEnvio" Type="DateTime" />
+          <Property Name="fechaLlegada" Type="DateTime" />
+          <Property Name="referenciaDomicilio" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="domicilioEntrega" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="numeroGuia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ordenCompra_idordenCompra" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ordencompra" Relationship="Self.fk_envios_ordenCompra1" FromRole="envios" ToRole="ordencompra" />
+        </EntityType>
+        <EntityType Name="metodospago">
+          <Key>
+            <PropertyRef Name="idmetodoPago" />
+          </Key>
+          <Property Name="idmetodoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="metodo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pagos" Relationship="Self.fk_pagos_metodospago1" FromRole="metodospago" ToRole="pagos" />
+        </EntityType>
+        <EntityType Name="ordencompra">
+          <Key>
+            <PropertyRef Name="idordenCompra" />
+          </Key>
+          <Property Name="idordenCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="domicilioEntrega" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" />
+          <Property Name="cantidad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="pesototal" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="pagado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="paqueteria" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="clientes_idcliente" Type="Int32" Nullable="false" />
+          <Property Name="productos_idproducto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clientes" Relationship="Self.fk_ordenCompra_clientes1" FromRole="ordencompra" ToRole="clientes" />
+          <NavigationProperty Name="envios" Relationship="Self.fk_envios_ordenCompra1" FromRole="ordencompra" ToRole="envios" />
+          <NavigationProperty Name="productos" Relationship="Self.fk_ordenCompra_productos1" FromRole="ordencompra" ToRole="productos" />
+          <NavigationProperty Name="pagos" Relationship="Self.fk_pagos_ordencompra1" FromRole="ordencompra" ToRole="pagos" />
+          <NavigationProperty Name="productos1" Relationship="Self.fk_productos_ordenCompra1" FromRole="ordencompra" ToRole="productos" />
+          <Property Name="cuentasbancarias_idcuentaBancaria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cuentasbancarias" Relationship="mayoreocModel.fk_ordencompra_cuentasbancarias1" FromRole="ordencompra" ToRole="cuentasbancarias" />
+        </EntityType>
+        <EntityType Name="pagos">
+          <Key>
+            <PropertyRef Name="idpagos" />
+          </Key>
+          <Property Name="idpagos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="concepto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="monto" Type="Decimal" />
+          <Property Name="notas" Type="String" MaxLength="245" FixedLength="false" Unicode="false" />
+          <Property Name="clientes_idcliente" Type="Int32" Nullable="false" />
+          <Property Name="ordencompra_idordenCompra" Type="Int32" Nullable="false" />
+          <Property Name="cuentasbancarias_idcuentaBancaria" Type="Int32" Nullable="false" />
+          <Property Name="metodospago_idmetodoPago" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clientes" Relationship="Self.fk_pagos_clientes1" FromRole="pagos" ToRole="clientes" />
+          <NavigationProperty Name="cuentasbancarias" Relationship="Self.fk_pagos_cuentasbancarias1" FromRole="pagos" ToRole="cuentasbancarias" />
+          <NavigationProperty Name="metodospago" Relationship="Self.fk_pagos_metodospago1" FromRole="pagos" ToRole="metodospago" />
+          <NavigationProperty Name="ordencompra" Relationship="Self.fk_pagos_ordencompra1" FromRole="pagos" ToRole="ordencompra" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="idproducto" />
+          </Key>
+          <Property Name="idproducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoInterno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="codigoProveedor" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="peso" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
+          <Property Name="existencia" Type="Int32" />
+          <Property Name="productoscol" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="imagen1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="imagen2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="imagen3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="imagen4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nuevo" Type="Boolean" />
+          <Property Name="precio" Type="Decimal" />
+          <Property Name="categoriaPrecio" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="agotado" Type="Boolean" />
+          <Property Name="catalogos_idcatalogo" Type="Int32" Nullable="false" />
+          <Property Name="categorias_idcategoria" Type="Int32" Nullable="false" />
+          <Property Name="subcategorias_idsubcategorias" Type="Int32" Nullable="false" />
+          <Property Name="ordenCompra_idordenCompra" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="carritos" Relationship="Self.fk_carritos_productos1" FromRole="productos" ToRole="carritos" />
+          <NavigationProperty Name="catalogos" Relationship="Self.fk_productos_catalogos1" FromRole="productos" ToRole="catalogos" />
+          <NavigationProperty Name="categorias" Relationship="Self.fk_productos_categorias1" FromRole="productos" ToRole="categorias" />
+          <NavigationProperty Name="ordencompra" Relationship="Self.fk_ordenCompra_productos1" FromRole="productos" ToRole="ordencompra" />
+          <NavigationProperty Name="ordencompra1" Relationship="Self.fk_productos_ordenCompra1" FromRole="productos" ToRole="ordencompra" />
+          <NavigationProperty Name="subcategorias" Relationship="Self.fk_productos_subcategorias1" FromRole="productos" ToRole="subcategorias" />
+        </EntityType>
+        <EntityType Name="subcategorias">
+          <Key>
+            <PropertyRef Name="idsubcategorias" />
+          </Key>
+          <Property Name="idsubcategorias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreSubcategoria" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="categorias_idcategoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.fk_subcategorias_categorias" FromRole="subcategorias" ToRole="categorias" />
+          <NavigationProperty Name="productos" Relationship="Self.fk_productos_subcategorias1" FromRole="subcategorias" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="idusuarios" />
+          </Key>
+          <Property Name="idusuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="perfil" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_carritos_clientes1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="carritos" Type="Self.carritos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="carritos">
+              <PropertyRef Name="clientes_idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carritos_productos1">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="carritos" Type="Self.carritos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="idproducto" />
+            </Principal>
+            <Dependent Role="carritos">
+              <PropertyRef Name="productos_idproducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_categorias_catalogos1">
+          <End Role="catalogos" Type="Self.catalogos" Multiplicity="1" />
+          <End Role="categorias" Type="Self.categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="idcatalogo" />
+            </Principal>
+            <Dependent Role="categorias">
+              <PropertyRef Name="catalogos_idcatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productos_catalogos1">
+          <End Role="catalogos" Type="Self.catalogos" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="idcatalogo" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="catalogos_idcatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productos_categorias1">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="idcategoria" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="categorias_idcategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_subcategorias_categorias">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="subcategorias" Type="Self.subcategorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="idcategoria" />
+            </Principal>
+            <Dependent Role="subcategorias">
+              <PropertyRef Name="categorias_idcategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordenCompra_clientes1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="ordencompra">
+              <PropertyRef Name="clientes_idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_clientes1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="clientes_idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_cuentasbancarias1">
+          <End Role="cuentasbancarias" Type="Self.cuentasbancarias" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuentasbancarias">
+              <PropertyRef Name="idcuentaBancaria" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="cuentasbancarias_idcuentaBancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_envios_ordenCompra1">
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="1" />
+          <End Role="envios" Type="Self.envios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordencompra">
+              <PropertyRef Name="idordenCompra" />
+            </Principal>
+            <Dependent Role="envios">
+              <PropertyRef Name="ordenCompra_idordenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_metodospago1">
+          <End Role="metodospago" Type="Self.metodospago" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="metodospago">
+              <PropertyRef Name="idmetodoPago" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="metodospago_idmetodoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordenCompra_productos1">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="idproducto" />
+            </Principal>
+            <Dependent Role="ordencompra">
+              <PropertyRef Name="productos_idproducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pagos_ordencompra1">
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="1" />
+          <End Role="pagos" Type="Self.pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordencompra">
+              <PropertyRef Name="idordenCompra" />
+            </Principal>
+            <Dependent Role="pagos">
+              <PropertyRef Name="ordencompra_idordenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productos_ordenCompra1">
+          <End Role="ordencompra" Type="Self.ordencompra" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordencompra">
+              <PropertyRef Name="idordenCompra" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="ordenCompra_idordenCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productos_subcategorias1">
+          <End Role="subcategorias" Type="Self.subcategorias" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subcategorias">
+              <PropertyRef Name="idsubcategorias" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="subcategorias_idsubcategorias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mayoreocEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="carritos" EntityType="Self.carritos" />
+          <EntitySet Name="catalogos" EntityType="Self.catalogos" />
+          <EntitySet Name="categorias" EntityType="Self.categorias" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" />
+          <EntitySet Name="cuentasbancarias" EntityType="Self.cuentasbancarias" />
+          <EntitySet Name="envios" EntityType="Self.envios" />
+          <EntitySet Name="metodospago" EntityType="Self.metodospago" />
+          <EntitySet Name="ordencompra" EntityType="Self.ordencompra" />
+          <EntitySet Name="pagos" EntityType="Self.pagos" />
+          <EntitySet Name="productos" EntityType="Self.productos" />
+          <EntitySet Name="subcategorias" EntityType="Self.subcategorias" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+          <AssociationSet Name="fk_carritos_clientes1" Association="Self.fk_carritos_clientes1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="carritos" EntitySet="carritos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carritos_productos1" Association="Self.fk_carritos_productos1">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="carritos" EntitySet="carritos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_categorias_catalogos1" Association="Self.fk_categorias_catalogos1">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="categorias" EntitySet="categorias" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productos_catalogos1" Association="Self.fk_productos_catalogos1">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productos_categorias1" Association="Self.fk_productos_categorias1">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_subcategorias_categorias" Association="Self.fk_subcategorias_categorias">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="subcategorias" EntitySet="subcategorias" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordenCompra_clientes1" Association="Self.fk_ordenCompra_clientes1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="ordencompra" EntitySet="ordencompra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_clientes1" Association="Self.fk_pagos_clientes1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_cuentasbancarias1" Association="Self.fk_pagos_cuentasbancarias1">
+            <End Role="cuentasbancarias" EntitySet="cuentasbancarias" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_envios_ordenCompra1" Association="Self.fk_envios_ordenCompra1">
+            <End Role="ordencompra" EntitySet="ordencompra" />
+            <End Role="envios" EntitySet="envios" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_metodospago1" Association="Self.fk_pagos_metodospago1">
+            <End Role="metodospago" EntitySet="metodospago" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordenCompra_productos1" Association="Self.fk_ordenCompra_productos1">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="ordencompra" EntitySet="ordencompra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pagos_ordencompra1" Association="Self.fk_pagos_ordencompra1">
+            <End Role="ordencompra" EntitySet="ordencompra" />
+            <End Role="pagos" EntitySet="pagos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productos_ordenCompra1" Association="Self.fk_productos_ordenCompra1">
+            <End Role="ordencompra" EntitySet="ordencompra" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productos_subcategorias1" Association="Self.fk_productos_subcategorias1">
+            <End Role="subcategorias" EntitySet="subcategorias" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <EntitySet Name="cortecaja" EntityType="mayoreocModel.cortecaja" />
+          <AssociationSet Name="fk_ordencompra_cuentasbancarias1" Association="mayoreocModel.fk_ordencompra_cuentasbancarias1">
+            <End Role="cuentasbancarias" EntitySet="cuentasbancarias" />
+            <End Role="ordencompra" EntitySet="ordencompra" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cortecaja">
+          <Key>
+            <PropertyRef Name="idcortecaja" />
+          </Key>
+          <Property Name="idcortecaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" />
+          <Property Name="encargado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fondoInicial" Type="Decimal" />
+          <Property Name="ingresoTotal" Type="Decimal" />
+          <Property Name="efectivoCaja" Type="Decimal" />
+        </EntityType>
+        <Association Name="fk_ordencompra_cuentasbancarias1">
+          <End Type="mayoreocModel.cuentasbancarias" Role="cuentasbancarias" Multiplicity="1" />
+          <End Type="mayoreocModel.ordencompra" Role="ordencompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuentasbancarias">
+              <PropertyRef Name="idcuentaBancaria" />
+            </Principal>
+            <Dependent Role="ordencompra">
+              <PropertyRef Name="cuentasbancarias_idcuentaBancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mayoreocModelStoreContainer" CdmEntityContainer="mayoreocEntities">
+          <EntitySetMapping Name="carritos">
+            <EntityTypeMapping TypeName="mayoreocModel.carritos">
+              <MappingFragment StoreEntitySet="carritos">
+                <ScalarProperty Name="idcarritos" ColumnName="idcarritos" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="caducidad" ColumnName="caducidad" />
+                <ScalarProperty Name="clientes_idcliente" ColumnName="clientes_idcliente" />
+                <ScalarProperty Name="productos_idproducto" ColumnName="productos_idproducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalogos">
+            <EntityTypeMapping TypeName="mayoreocModel.catalogos">
+              <MappingFragment StoreEntitySet="catalogos">
+                <ScalarProperty Name="idcatalogo" ColumnName="idcatalogo" />
+                <ScalarProperty Name="nombreCatalogo" ColumnName="nombreCatalogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="mayoreocModel.categorias">
+              <MappingFragment StoreEntitySet="categorias">
+                <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+                <ScalarProperty Name="nombreCategoria" ColumnName="nombreCategoria" />
+                <ScalarProperty Name="catalogos_idcatalogo" ColumnName="catalogos_idcatalogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="mayoreocModel.clientes">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono1" ColumnName="telefono1" />
+                <ScalarProperty Name="telefono2" ColumnName="telefono2" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numExterior" ColumnName="numExterior" />
+                <ScalarProperty Name="numInterior" ColumnName="numInterior" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuentasbancarias">
+            <EntityTypeMapping TypeName="mayoreocModel.cuentasbancarias">
+              <MappingFragment StoreEntitySet="cuentasbancarias">
+                <ScalarProperty Name="idcuentaBancaria" ColumnName="idcuentaBancaria" />
+                <ScalarProperty Name="numeroCuenta" ColumnName="numeroCuenta" />
+                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+                <ScalarProperty Name="titular" ColumnName="titular" />
+                <ScalarProperty Name="clabe" ColumnName="clabe" />
+                <ScalarProperty Name="banco" ColumnName="banco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="envios">
+            <EntityTypeMapping TypeName="mayoreocModel.envios">
+              <MappingFragment StoreEntitySet="envios">
+                <ScalarProperty Name="idenvio" ColumnName="idenvio" />
+                <ScalarProperty Name="paqueteria" ColumnName="paqueteria" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+                <ScalarProperty Name="fechaEnvio" ColumnName="fechaEnvio" />
+                <ScalarProperty Name="fechaLlegada" ColumnName="fechaLlegada" />
+                <ScalarProperty Name="referenciaDomicilio" ColumnName="referenciaDomicilio" />
+                <ScalarProperty Name="domicilioEntrega" ColumnName="domicilioEntrega" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="numeroGuia" ColumnName="numeroGuia" />
+                <ScalarProperty Name="ordenCompra_idordenCompra" ColumnName="ordenCompra_idordenCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="metodospago">
+            <EntityTypeMapping TypeName="mayoreocModel.metodospago">
+              <MappingFragment StoreEntitySet="metodospago">
+                <ScalarProperty Name="idmetodoPago" ColumnName="idmetodoPago" />
+                <ScalarProperty Name="metodo" ColumnName="metodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordencompra">
+            <EntityTypeMapping TypeName="mayoreocModel.ordencompra">
+              <MappingFragment StoreEntitySet="ordencompra">
+                <ScalarProperty Name="cuentasbancarias_idcuentaBancaria" ColumnName="cuentasbancarias_idcuentaBancaria" />
+                <ScalarProperty Name="idordenCompra" ColumnName="idordenCompra" />
+                <ScalarProperty Name="domicilioEntrega" ColumnName="domicilioEntrega" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="pesototal" ColumnName="pesototal" />
+                <ScalarProperty Name="pagado" ColumnName="pagado" />
+                <ScalarProperty Name="paqueteria" ColumnName="paqueteria" />
+                <ScalarProperty Name="clientes_idcliente" ColumnName="clientes_idcliente" />
+                <ScalarProperty Name="productos_idproducto" ColumnName="productos_idproducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pagos">
+            <EntityTypeMapping TypeName="mayoreocModel.pagos">
+              <MappingFragment StoreEntitySet="pagos">
+                <ScalarProperty Name="idpagos" ColumnName="idpagos" />
+                <ScalarProperty Name="concepto" ColumnName="concepto" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+                <ScalarProperty Name="clientes_idcliente" ColumnName="clientes_idcliente" />
+                <ScalarProperty Name="ordencompra_idordenCompra" ColumnName="ordencompra_idordenCompra" />
+                <ScalarProperty Name="cuentasbancarias_idcuentaBancaria" ColumnName="cuentasbancarias_idcuentaBancaria" />
+                <ScalarProperty Name="metodospago_idmetodoPago" ColumnName="metodospago_idmetodoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="mayoreocModel.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="idproducto" ColumnName="idproducto" />
+                <ScalarProperty Name="codigoInterno" ColumnName="codigoInterno" />
+                <ScalarProperty Name="codigoProveedor" ColumnName="codigoProveedor" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="existencia" ColumnName="existencia" />
+                <ScalarProperty Name="productoscol" ColumnName="productoscol" />
+                <ScalarProperty Name="imagen1" ColumnName="imagen1" />
+                <ScalarProperty Name="imagen2" ColumnName="imagen2" />
+                <ScalarProperty Name="imagen3" ColumnName="imagen3" />
+                <ScalarProperty Name="imagen4" ColumnName="imagen4" />
+                <ScalarProperty Name="nuevo" ColumnName="nuevo" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="categoriaPrecio" ColumnName="categoriaPrecio" />
+                <ScalarProperty Name="agotado" ColumnName="agotado" />
+                <ScalarProperty Name="catalogos_idcatalogo" ColumnName="catalogos_idcatalogo" />
+                <ScalarProperty Name="categorias_idcategoria" ColumnName="categorias_idcategoria" />
+                <ScalarProperty Name="subcategorias_idsubcategorias" ColumnName="subcategorias_idsubcategorias" />
+                <ScalarProperty Name="ordenCompra_idordenCompra" ColumnName="ordenCompra_idordenCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subcategorias">
+            <EntityTypeMapping TypeName="mayoreocModel.subcategorias">
+              <MappingFragment StoreEntitySet="subcategorias">
+                <ScalarProperty Name="idsubcategorias" ColumnName="idsubcategorias" />
+                <ScalarProperty Name="nombreSubcategoria" ColumnName="nombreSubcategoria" />
+                <ScalarProperty Name="categorias_idcategoria" ColumnName="categorias_idcategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="mayoreocModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="idusuarios" ColumnName="idusuarios" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="perfil" ColumnName="perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cortecaja">
+            <EntityTypeMapping TypeName="mayoreocModel.cortecaja">
+              <MappingFragment StoreEntitySet="cortecaja">
+                <ScalarProperty Name="efectivoCaja" ColumnName="efectivoCaja" />
+                <ScalarProperty Name="ingresoTotal" ColumnName="ingresoTotal" />
+                <ScalarProperty Name="fondoInicial" ColumnName="fondoInicial" />
+                <ScalarProperty Name="encargado" ColumnName="encargado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idcortecaja" ColumnName="idcortecaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
